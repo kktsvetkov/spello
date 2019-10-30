@@ -1,0 +1,34 @@
+{
+	"name": "kktsvetkov/spello",
+	"license": "MIT",
+	"description": "Simple basic spelling suggestions, a.k.a. \"Did you mean?\" ",
+	"keywords": ["soundex", "spelling", "metaphone", "levenshtein", "did-you-mean", "spelling-suggestions"],
+	"authors": [
+		{
+		"name": "Kaloyan Tsvetkov (KT)",
+		"email": "kaloyan@kaloyan.info",
+		"homepage": "http://kaloyan.info",
+		"role": "Developer"
+		}
+	],
+
+	"require": {
+		"php": ">=7.0.0"
+	},
+
+	"autoload": {
+		"psr-4": {
+			"Spello\\": "src/"
+		}
+	},
+
+	"require-dev": {
+		"phpunit/phpunit": "^7.5"
+	},
+
+        "autoload-dev": {
+		"psr-4": {
+			"Spello\\Tests\\": "tests/"
+		}
+        }
+}
