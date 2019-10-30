@@ -4,6 +4,39 @@ Simple basic spelling suggestions, a.k.a. "Did you mean?"
 
 ## How it works ?
 
+It is meant to be very easy to use.
+
+You start by importing all words you are going to use in a dictionary. There is
+no point to do spelling suggestions for words that are not part of your site or
+your database. When you import the words into the dictionary, you "train" the
+dictionary with a search algorithm, and it is this search algo that is later
+going to be used to do the actual spelling suggestions.
+
+```php
+$source = new \Spello\Source\FromArray([
+	'Tyger Tyger, burning bright,',
+	'In the forests of the night;'
+	]);
+$search = new Spello\Search\SoundEx;
+$dictionary = new \Spello\Dictionary\PHPFile('/tmp/my.soundex.php');
+\Spello\Assistant::train($source, $dictionary, $search);
+```
+
+Sometimes there will be more than one spelling suggestion, and in that case
+you can use a dictionary with the word count to filter only the most popular
+suggestion: the one with the biggest number of occurrences. To do that, you
+need to train a word count dictionary as well, using `\Spello\Search\WordCount`
+
+```php
+$source = new \Spello\Source\FromArray([
+	'Tyger Tyger, burning bright,',
+	'In the forests of the night;'
+	]);
+$wc_search = new Spello\Search\WordCount;
+$wc_dictionary = new \Spello\Dictionary\PHPFile('/tmp/my.soundex.php');
+\Spello\Assistant::train($source, $wc_dictionary, $wc_search);
+```
+
 ## What is inside ?
 
 ### Search
